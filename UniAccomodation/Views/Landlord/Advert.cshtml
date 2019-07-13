@@ -1,0 +1,46 @@
+﻿@model AdvertViewModel
+
+@{
+    ViewData["Title"] = "Advert " + Model.Id;
+}
+<div class="advert">
+    <h2>Advert @Model.Id</h2>
+    <p class="status"><span>Status: </span>@Model.Status</p>
+    @if (!string.IsNullOrEmpty(Model.Comments))
+    {
+        <p class="comments"><span>Officer comments: </span>@Model.Comments</p>
+    }
+</div>
+
+@Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+<form asp-action="Advert" method="post" enctype="multipart/form-data" class="well">
+    <input type="hidden" readonly asp-for="Id" />
+    <input type="hidden" readonly asp-for="Status" />
+    <input type="hidden" readonly asp-for="Comments" />
+    <div class="form-group">
+        <label asp-for="Title"></label>
+        <div><span asp-validation-for="Title" class="text-danger"></span></div>
+        <input asp-for="Title" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <div><span asp-validation-for="Description" class="text-danger"></span></div>
+        <input asp-for="Description" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="MonthlyPrice"></label>
+        <div><span asp-validation-for="MonthlyPrice" class="text-danger"></span></div>
+        <input asp-for="MonthlyPrice" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Photo"></label>
+        <img class="img-responsive" src="@Model.PhotoUrl" />
+        <div><span asp-validation-for="Photo" class="text-danger"></span></div>
+        <input asp-for="Photo" class="form-control" accept="image/jpg" />
+    </div>
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Save</button>
+        <a asp-action="Index" class="btn btn-default">Cancel</a>
+    </div>
+</form>

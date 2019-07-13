@@ -1,0 +1,44 @@
+﻿@model AdvertReviewViewModel
+
+@{
+    ViewData["Title"] = "Advert " + Model.Id;
+}
+<h2>Advert @Model.Id</h2>
+
+<article class="advert row well well-sm">
+    <header class="col-xs-12">
+        <h3>@Model.Title</h3>
+        <p class="status"><span>Status:</span> @Model.Status</p>
+    </header>
+    <figure class="col-xs-12 col-sm-4">
+        <img class="img-responsive" src="@Model.PhotoUrl" />
+    </figure>
+    <div class="col-xs-12 col-sm-8">
+        <p class="description"><span>Description:</span> @Model.Description</p>
+        <p class="price"><span>Monthly price:</span> @Model.MonthlyPrice.ToString("C")</p>
+    </div>
+</article>
+
+<div asp-validation-summary="All" class="text-danger"></div>
+<form asp-action="Advert" method="post" class="advert-review row well well-sm">
+    <h4>Advert Review</h4>
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="Status"></label>
+        <select asp-for="Status" asp-items="Html.GetEnumSelectList<AdvertStatus>()" class="form-control"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Comments"></label>
+        <div><span asp-validation-for="Comments" class="text-danger"></span></div>
+        <input asp-for="Comments" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Confirm"></label>
+        <div><span asp-validation-for="Confirm" class="text-danger"></span></div>
+        <input asp-for="Confirm" /> Yes, I confirm
+    </div>
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Save</button>
+        <a asp-action="Index" class="btn btn-default">Cancel</a>
+    </div>
+</form>

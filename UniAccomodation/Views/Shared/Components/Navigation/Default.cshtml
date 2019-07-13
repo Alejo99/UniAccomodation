@@ -1,0 +1,12 @@
+﻿@model Dictionary<string, NavLink>
+
+<ul class="nav navbar-nav">
+    @foreach(var txt in Model.Keys)
+    {
+        var navLink = Model[txt];
+        <li>
+            <a asp-controller="@navLink.Controller" asp-action="@navLink.Action" asp-all-route-data="@navLink.RouteValues">@txt</a>
+        </li>
+
+    }
+</ul>

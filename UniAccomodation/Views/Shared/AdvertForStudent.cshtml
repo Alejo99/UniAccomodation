@@ -1,0 +1,22 @@
+﻿@model Advert
+<article class="advert row well well-sm">
+    <header class="col-xs-12">
+        <h3>@Model.Title</h3>
+    </header>
+    <figure class="col-xs-12 col-sm-4">
+        <img class="img-responsive" src="@Model.PhotoUrl" />
+    </figure>
+    <div class="col-xs-12 col-sm-8">
+        <p class="description"><span>Description: </span>@Model.Description</p>
+        <p class="price"><span>Monthly price: </span>@Model.MonthlyPrice.ToString("C")</p>
+        <div class="contact">
+            <h4>Contact the landlord:</h4>
+            <p class="username"><span>Username:</span> @Model.Landlord.UserName</p>
+            <p class="email"><span>Email:</span> @Model.Landlord.Email</p>
+            @if (!string.IsNullOrEmpty(Model.Landlord.PhoneNumber))
+            {
+                <p class="phone"><span>Phone: </span>@Model.Landlord.PhoneNumber</p>
+            }
+        </div>
+    </div>
+</article>

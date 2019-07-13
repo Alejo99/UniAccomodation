@@ -1,0 +1,17 @@
+﻿@model Advert
+<article class="advert row well well-sm">
+    <header class="col-xs-12">
+        <h3>@Model.Title</h3>
+        <p class="status"><span>Status:</span> @Model.Status</p>
+    </header>
+    <figure class="col-xs-12 col-sm-4">
+        <img class="img-responsive" src="@Model.PhotoUrl" />
+    </figure>
+    <div class="col-xs-12 col-sm-8">
+        <p class="description"><span>Description:</span> @Model.Description</p>
+        <p class="price"><span>Monthly price:</span> @Model.MonthlyPrice.ToString("C")</p>
+    </div>
+    <div class="col-xs-12">
+        <a asp-action="Advert" asp-route-id="@Model.Id" class="btn btn-primary edit">Edit</a>
+    </div>
+</article>
